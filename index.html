@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba</title>
+</head>
+<body>
+    <button type="button" onclick="consultaGet('https://ssd-api.jpl.nasa.gov/sb_radar.api')">GET 1</button><br>
+    <button type="button" onclick="consultaGet('https://ssd-api.jpl.nasa.gov/fireball.api?limit=20')">GET 2</button><br>
+    <button type="button" onclick="consultaPost('https://jsonplaceholder.typicode.com/posts')">POST</button><br>
+    <input type="file" name="archivo" id="archivo" accept=".txt"><br>
+    <script>
+        function consultaGet(url) {
+            fetch(url, {
+                method: 'GET',
+            })
+            .then(res => res.json())
+            .then(data => console.log(data))
+        }
+
+        function consultaPost(url) {
+            fetch(url, {
+                method: 'POST',
+                body: JSON.stringify({
+                    title: 'foo',
+                    body: 'bar',
+                    userId: 1,
+                }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                },
+                })
+                .then((response) => response.json())
+                .then((json) => console.log(json));
+        };
+    </script>
+</body>
+</html>
